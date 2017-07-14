@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import configureStore from './store/store';
 
-import { signup, login, logout } from './util/session_api_util';
+// import { signup, login, logout } from './util/session_api_util';
+import { signup, login, logout } from './actions/session_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
-  // const preloadedState = localStorage.state ?
-  //   JSON.parse(localStorage.state) : {};
-  // const store = configureStore(preloadedState);
+  const store = configureStore();
+
+  window.dispatch = store.dispatch;
+  window.getState = store.getState;
 
   window.signup = signup;
   window.login = login;
