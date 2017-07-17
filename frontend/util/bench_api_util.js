@@ -1,4 +1,4 @@
-export const fetchAllBenches = () => {
+export const fetchBenches = () => {
   return $.ajax({
     url: 'api/benches',
     type: 'GET'
