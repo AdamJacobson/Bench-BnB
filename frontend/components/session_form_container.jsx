@@ -23,7 +23,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 
   return {
-    processForm: () => dispatch(action())
+    processForm: (user) => dispatch(action(user))
   };
 };
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { connect } from 'react-redux';
 import { Link, Redirect, withRouter } from 'react-router-dom';
 
 class SessionForm extends React.Component {
@@ -21,9 +20,7 @@ class SessionForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    // Shouldn't this be { user: {username, password} } ?
     const user = { user: this.state };
-    debugger
     this.props.processForm(user);
   }
 
@@ -33,16 +30,16 @@ class SessionForm extends React.Component {
     }
 
     let headerText;
-    let link;
+    let footerLink;
     let footerText;
     if (this.props.formType === 'login') {
       headerText = "Log In";
       footerText = "Not a member yet?";
-      link = (<Link to="/signup">Sign Up</Link>);
+      footerLink = (<Link to="/signup">Sign Up</Link>);
     } else {
       headerText = "Sign Up";
       footerText = "Already signed up?";
-      link = (<Link to="/login">Log In</Link>);
+      footerLink = (<Link to="/login">Log In</Link>);
     }
 
     return(
@@ -50,8 +47,8 @@ class SessionForm extends React.Component {
         <h1>{headerText}</h1>
 
         <form>
-          <ul>
-            {this.props.errors.map((error) => <li>error</li>)}
+          <ul className="errors">
+            {this.props.errors.map((error, i) => <li key={i} className="error" >{error}</li>)}
           </ul>
 
           <label htmlFor="username">Username</label>
@@ -72,7 +69,7 @@ class SessionForm extends React.Component {
         </form>
 
         <div>{footerText}</div>
-        {link}
+        {footerLink}
       </div>
     );
   }
