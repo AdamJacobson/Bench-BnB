@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 
-import { signup, login, logout } from './actions/session_actions';
+import * as BenchAPIUtil from './util/bench_api_util';
 import Root from './components/root';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -15,9 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
     store = configureStore();
   }
 
+  window.BenchAPIUtil = BenchAPIUtil;
+
   window.dispatch = store.dispatch;
   window.getState = store.getState;
-  
+
   const root = document.getElementById('root');
   ReactDOM.render(<Root store={store}/>, root);
 });
